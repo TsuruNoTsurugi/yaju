@@ -5,9 +5,10 @@ class yaju_match:
     def __init__(self, scripts, re_path):
         self.scripts = scripts
         self.re_path = re_path
+        self.isMatch = False
     
     def re_file_open(self):
-        with open(self.re_path, 'r') as file:
+        with open(self.re_path, 'r', encoding='utf-8') as file:
             self.re_file = json.load(file)
             file.close()
         return self.re_file
@@ -42,6 +43,7 @@ class yaju_match:
             res = re.findall(re_str, self.scripts)
             if res != []:
                 self.found.append(res)
+                self.isMatch = True
         return self.found
     
     def highlight(self):

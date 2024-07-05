@@ -1,5 +1,10 @@
 import lib.yaju_match as yaju_match
 from os import path
+import sys
 
-yjmtch = yaju_match.yaju_match("免許もってるのか！？", path.normpath(path.join(path.dirname(__file__), 'list/re.json')))
-print(yjmtch.highlight())
+with open(path.normpath(path.join(path.dirname(__file__), 'out.txt')), 'r', encoding='utf-8') as file:
+    S = file.read()
+    file.close()
+yjmtch = yaju_match.yaju_match(S, path.normpath(path.join(path.dirname(__file__), 'list/re.json')))
+yjmtch.findall()
+print(yjmtch.isMatch, end="")
